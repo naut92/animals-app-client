@@ -11,10 +11,6 @@ Run on port 3000:
 
 $ yarn start
 
-Docker command:
-1. docker-compose build web
-2. docker-compose up web
-
 image only:
 
 docker build -t animals-app-client .
