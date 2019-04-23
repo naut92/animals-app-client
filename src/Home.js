@@ -12,7 +12,7 @@ class Home extends Component {
     };
 
     async componentDidMount() {
-        const response = await fetch(global.path + '/api/customers');
+        const response = await fetch(global.path + '/animals-api/customers');
         const body = await response.json();
         this.setState({ customers: body, isLoading: false });
     }
