@@ -1,7 +1,7 @@
 #client for animals_app React JSX
 
 Backend
-In order to use the app, please clone this simple backend app - https://github.com/naut92/animals-app Fire-up the server and then continue with setting-up the frontend app
+In order to use the app, please clone this simple backend app - https://github.com/naut92/animals-microservices-project/tree/master/animals-app Fire-up the server and then continue with setting-up the frontend app
 
 Setup:
 
