@@ -8,17 +8,17 @@ import './globalPath.js';
 class Home extends Component {
     state = {
         isLoading: true,
-        customers: []
+        cities: []
     };
 
     async componentDidMount() {
-        const response = await fetch(global.path + '/animals-api/customers');
+        const response = await fetch(global.path + '/city-api/cities');
         const body = await response.json();
-        this.setState({ customers: body, isLoading: false });
+        this.setState({ cities: body, isLoading: false });
     }
 
     render() {
-        const {customers, isLoading} = this.state;
+        const {cities, isLoading} = this.state;
 
         if (isLoading) {
             return <p>Loading...</p>;
@@ -28,10 +28,10 @@ class Home extends Component {
                 <AppNavbar/>
                 <Container fluid>
                     {/*<Button color="link"><Link to="/customers">Manage animals</Link></Button>*/}
-                    <h2>Клиенты:</h2>
-                    {customers.map(customer =>
-                            <div key={customer.id}>
-                                <Button color="link"><Link to={"/customer/" + customer.id}>{customer.email}</Link></Button>
+                    <h2>Cities:</h2>
+                    {cities.map(city =>
+                            <div key={city.id}>
+                                <Button color="link"><Link to={"/city/" + city.id}>{city.name}</Link></Button>
                             </div>
                             )}
                 </Container>
