@@ -1,28 +1,25 @@
-FROM mhart/alpine-node:11 AS builder
-WORKDIR /app
-COPY . .
-RUN yarn run build
-
-FROM mhart/alpine-node
-RUN yarn global add serve
-WORKDIR /app
-COPY --from=builder /app/build .
-CMD ["serve", "-p", "3002", "-s", "."]
-
-
-# The Node version that we'll be running for our version of React.
-# You may have to search the Node directory for a version that fits
-# the version of React you're using.
-#FROM node:10.15-alpine
-
-# Create a work directory and copy over our dependency manifest files.
-#RUN mkdir /app
+#FROM mhart/alpine-node:11 AS builder
 #WORKDIR /app
-#COPY /src /app/src
-#COPY ["package.json", "package-lock.json*", "./"]
+#COPY . .
+#RUN yarn run build
 
-# If you're using yarn:
-#RUN yarn install --production --silent && mv node_modules ../
+#FROM mhart/alpine-node
+#RUN yarn global add serve
+#WORKDIR /app
+#COPY --from=builder /app/build .
+#CMD ["serve", "-p", "3002", "-s", "."]
 
-# Expose PORT 3000 on our virtual machine so we can run our server
-#EXPOSE 3000
+
+#команда запуска
+# без ngnx: docker run -p 3000:80 animals-app-client
+
+
+#создать изображение:
+#1. yarn build
+#2. docker build -t frontend/animals-app-client .
+
+#только для запуска в среде docker:
+#3. docker run -d -p 80:80 frontend/animals-app-client
+
+FROM nginx
+COPY build /usr/share/nginx/html

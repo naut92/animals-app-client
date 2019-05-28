@@ -1,7 +1,7 @@
 //только для развертывания в docker-compose:
 //global.path = 'http://localhost:8064';
 //без докера:
-global.path = '';
+global.path = 'http://localhost:80';
 
 /*(function() {
     var cors_api_host = 'cors-anywhere.herokuapp.com';
