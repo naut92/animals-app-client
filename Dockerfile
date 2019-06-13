@@ -16,10 +16,11 @@
 
 #создать изображение:
 #1. yarn build
-#2. docker build -t frontend/animals-app-client .
+#2. docker build -t frontend/animals-app-client-8064 .
 
 #только для запуска в среде docker:
 #3. docker run -d -p 80:80 frontend/animals-app-client
 
 FROM nginx
 COPY build /usr/share/nginx/html
+

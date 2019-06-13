@@ -25,7 +25,7 @@ class AnimalEdit extends Component {
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
             const animalId = this.props.location.pathname.substring(this.props.location.pathname.lastIndexOf('/') + 1, this.props.location.pathname.length);
-            const animal = await (await fetch( global.path + `/animals-api/animal/:id/${animalId}`)).json();
+            const animal = await (await fetch( global.path + `/animals-app/animals-api/animal/:id/${animalId}`)).json();
             this.setState({animal: animal});
         }
     }
@@ -45,7 +45,7 @@ class AnimalEdit extends Component {
         const {animal} = this.state;
         const customerId = this.props.location.pathname.substring(this.props.location.pathname.lastIndexOf('/') + 1, this.props.location.pathname.length);
 
-        await fetch((animal.id) ? global.path + '/animals-api/animal/'+ animal.customersId + '/' +  animal.id : global.path + '/animals-api/animal/new/' + customerId,{
+        await fetch((animal.id) ? global.path + '/animals-app/animals-api/animal/'+ animal.customersId + '/' +  animal.id : global.path + '/animals-app/animals-api/animal/new/' + customerId,{
                 method: (animal.id) ? 'PUT' : 'POST',
                 headers: {
                     'Accept': 'application/json',
