@@ -4,24 +4,18 @@ import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
 import { Button, Container } from 'reactstrap';
 import './globalPath.js';
-import axios from 'axios';
 
 class Home extends Component {
     state = {
         isLoading: true,
-        cities: [],
-        name:''
+        cities: []
     };
 
     async componentDidMount() {
         //const response = await fetch(global.path + '/city-api/cities');
-        //const response = await fetch(global.path + '/animals-api/cities');
-        //const body = await response.json();
-        //axios.get(global.path + '/animals-api/cities').then(res => {
-        axios.get(global.path + '/city-service/city-api/cities').then(res => {
-            const cities = res.data;
-            this.setState({cities, isLoading: false});
-        })
+        const response = await fetch(global.path + '/animals-api/cities');
+        const body = await response.json();
+        this.setState({ cities: body, isLoading: false });
     }
 
     render() {
@@ -36,9 +30,9 @@ class Home extends Component {
                 <Container fluid>
                     {/*<Button color="link"><Link to="/customers">Manage animals</Link></Button>*/}
                     <h2>Cities:</h2>
-                    {Object.keys(cities).map(city =>
-                            <div key={cities[city].id}>
-                                <Button color="link"><Link to={"/city/" + cities[city].id}>{cities[city].name}</Link></Button>
+                    {cities.map(city =>
+                            <div key={city.id}>
+                                <Button color="link"><Link to={"/city/" + city.id}>{city.name}</Link></Button>
                             </div>
                             )}
                 </Container>
