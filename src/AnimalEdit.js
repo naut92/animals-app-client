@@ -10,7 +10,7 @@ class AnimalEdit extends Component {
         typesanimal: '',
         sex: '',
         dateborn: '',
-        customersId: ''
+        customerId: ''
     };
 
     constructor(props) {
@@ -25,7 +25,8 @@ class AnimalEdit extends Component {
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
             const animalId = this.props.location.pathname.substring(this.props.location.pathname.lastIndexOf('/') + 1, this.props.location.pathname.length);
-            const animal = await (await fetch( global.path + `/animals-api/animal/:id/${animalId}`)).json();
+            const animal = await (await fetch( global.path + `/animals-app/animal/:id/${animalId}`)).json();
+            //const animal = await (await fetch( global.path + `/animal/:id/${animalId}`)).json();
             this.setState({animal: animal});
         }
     }
@@ -43,9 +44,10 @@ class AnimalEdit extends Component {
         console.log(event);
         event.preventDefault();
         const {animal} = this.state;
-        const customerId = this.props.location.pathname.substring(this.props.location.pathname.lastIndexOf('/') + 1, this.props.location.pathname.length);
+        const customer_Id = this.props.location.pathname.substring(this.props.location.pathname.lastIndexOf('/') + 1, this.props.location.pathname.length);
 
-        await fetch((animal.id) ? global.path + '/animals-api/animal/'+ animal.customersId + '/' +  animal.id : global.path + '/animals-api/animal/new/' + customerId,{
+        await fetch((animal.id) ? global.path + '/animals-app/animal/'+ animal.customerId + '/' +  animal.id : global.path + '/animals-app/animal/new/' + customer_Id,{
+        //await fetch((animal.id) ? global.path + '/animal/'+ animal.customerId + '/' +  animal.id : global.path + '/animal/new/' + customer_Id,{
                 method: (animal.id) ? 'PUT' : 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -53,7 +55,7 @@ class AnimalEdit extends Component {
                 },
                 body: JSON.stringify(animal),
             });
-        (animal.id) ? this.props.history.push('/customer/' + animal.customersId) : this.props.history.push('/customer/' + customerId);
+        (animal.id) ? this.props.history.push('/customer/' + animal.customerId) : this.props.history.push('/customer/' + customer_Id);
     }
 
     render() {

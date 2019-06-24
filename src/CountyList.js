@@ -20,7 +20,8 @@ class CountyList extends Component {
     }
 
     async componentDidMount() {
-        const city = await (await fetch(global.path +`/city-api/city/${this.props.match.params.id}`)).json();
+        const city = await (await fetch(global.path + `/city-service/city/${this.props.match.params.id}`)).json();
+        //const city = await (await fetch(global.path + `/cities/city/${this.props.match.params.id}`)).json();
         this.setState({city: city});
     }
 

@@ -20,7 +20,8 @@ class CustomerList extends Component {
     }
 
     async componentDidMount() {
-        const county = await (await fetch(global.path +`/counties-api/county/${this.props.match.params.id}`)).json();
+        const county = await (await fetch(global.path +`/counties-service/county/${this.props.match.params.id}`)).json();
+        //const county = await (await fetch(global.path +`/counties/county/${this.props.match.params.id}`)).json();
         this.setState({county: county});
     }
 
@@ -38,7 +39,7 @@ class CustomerList extends Component {
                     <h2>Customers:</h2>
                     {Object.keys(county.customerById).map(customer =>
                         <div key={county.customerById[customer].id}>
-                            <Button color="link"><Link to={global.path + "/customer/" + county.customerById[customer].id}>{county.customerById[customer].email}</Link></Button>
+                            <Button color="link"><Link to={"/customer/" + county.customerById[customer].id}>{county.customerById[customer].email}</Link></Button>
                         </div>
                     )}
                 </Container>

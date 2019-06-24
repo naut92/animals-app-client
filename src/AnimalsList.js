@@ -22,14 +22,15 @@ class AnimalsList extends Component {
 
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
-            const customer = await (await fetch(global.path +`/animals-api/customer/${this.props.match.params.id}`)).json();
+            const customer = await (await fetch(global.path +`/animals-app/customer/${this.props.match.params.id}`)).json();
+            //const customer = await (await fetch(global.path +`/customer/${this.props.match.params.id}`)).json();
             this.setState({animals: customer});
         }
     }
 
     async remove(id) {
         const customerId= this.props.match.params.id;
-        await fetch(global.path + `/animals-api/customer/${customerId}/${id}`, {
+        await fetch(global.path + `/animals-app/customer/${customerId}/${id}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',

@@ -12,8 +12,8 @@ class Home extends Component {
     };
 
     async componentDidMount() {
-        //const response = await fetch(global.path + '/city-api/cities');
-        const response = await fetch(global.path + '/animals-api/cities');
+        const response = await fetch(global.path + '/city-service/cities');
+        //const response = await fetch(global.path + '/cities');
         const body = await response.json();
         this.setState({ cities: body, isLoading: false });
     }
