@@ -25,5 +25,13 @@
 #3. docker run -d -p 80:80 frontend/animals-app-client
 
 #FROM nginx
-#--COPY nginx.conf /etc/nginx/nginx.conf
 #COPY build /usr/share/nginx/html
+
+# copy build from client to backend:
+# cp -a build/. /Users/echo/projects/animals/animals-microservices-project/resource-manifests/frontend/build/
+
+FROM nginx:alpine
+COPY ./nginx/default.conf /etc/nginx/nginx.conf
+COPY build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
